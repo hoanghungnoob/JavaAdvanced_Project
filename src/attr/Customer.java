@@ -56,7 +56,7 @@ public class Customer extends User {
 	}
 
 	public void createCustomer(JFrame sa) {
-		String query2 = "INSERT INTO customer ( username, password ,customer_name, address, phone_number, status) VALUES ('"+userName+"','"+password+"','"+customerName+"','"+phoneNumber+"','"+address+"','"+getStatus()+"');";
+		String query2 = "INSERT INTO customer ( username, password ,customer_name, phone_number, address, status) VALUES ('"+userName+"','"+password+"','"+customerName+"','"+phoneNumber+"','"+address+"','"+getStatus()+"');";
 		Connection con = null;
         Statement st = null;
 		System.out.println(query2);
@@ -129,40 +129,40 @@ public class Customer extends User {
         }
 	}
 	
-//	public void updateCustomer(String name, int phone, String address) {
-//		String query = "UPDATE `customer` SET `customerName`='"+name+"', `phoneNumber`='+880"+phone+"', `address`='"+address+"' WHERE `userId`='"+this.userId+"';";
-//		Connection con = null;
-//        Statement st = null;
-//		System.out.println(query);
-//        try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//			System.out.println("driver loaded");
-//			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
-//			System.out.println("connection done");//connection with database established
-//			st = con.createStatement();//create statement
-//			System.out.println("statement created");
-//			st.executeUpdate(query);//insert
-//			System.out.println("data inserted");
-//			JOptionPane.showMessageDialog(null,"Information Updated!");
-//			this.customerName = name;
-//			this.phoneNumber = "+880"+phone;
-//			this.address = address;
-//		}
-//        catch(Exception ex) {
-//			JOptionPane.showMessageDialog(null,"Failed to update account!");
-//			System.out.println("Exception : " +ex.getMessage());
-//        }
-//        finally {
-//            try {
-//                if(st!=null)
-//					st.close();
-//
-//                if(con!=null)
-//					con.close();
-//            }
-//            catch(Exception ex) {}
-//        }
-//	}
+	public void updateCustomer(String name, int phone, String address) {
+		String query = "UPDATE `customer` SET `customerName`='"+name+"', `phoneNumber`='+84"+phone+"', `address`='"+address+"' WHERE `userName`='"+this.customerName;
+        Statement st = null;
+        Connection con = null;
+		System.out.println(query);
+        try {
+			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("driver loaded");
+			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
+			System.out.println("connection done");//connection with database established
+			st = con.createStatement();//create statement
+			System.out.println("statement created");
+			st.executeUpdate(query);//insert
+			System.out.println("data inserted");
+			JOptionPane.showMessageDialog(null,"Information Updated!");
+			this.customerName = name;
+			this.phoneNumber = "+84"+phone;
+			this.address = address;
+		}
+        catch(Exception ex) {
+			JOptionPane.showMessageDialog(null,"Failed to update account!");
+			System.out.println("Exception : " +ex.getMessage());
+        }
+        finally {
+            try {
+                if(st!=null)
+					st.close();
+
+                if(con!=null)
+					con.close();
+            }
+            catch(Exception ex) {}
+        }
+	}
 //	public void deleteCustomer() {
 //		String query1 = "DELETE FROM `login` WHERE `userId`='"+this.userId+"';";
 //		String query2 = "DELETE FROM `customer` WHERE `userId`='"+this.userId+"';";

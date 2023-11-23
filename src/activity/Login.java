@@ -100,6 +100,11 @@ public class Login extends JFrame implements ActionListener {
 				ca.setVisible(true);
 				this.setVisible(false);
 			}
+			else if (status==0) {
+				AdminActivity ad = new AdminActivity(usernameTF.getText());
+				ad.setVisible(true);
+				this.setVisible(false);
+			}
 			else {
 				JOptionPane.showMessageDialog(this,"Invalid UserName or Password"); 
 			}
