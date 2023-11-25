@@ -82,40 +82,40 @@ public abstract class User {
 		return result;
 	}
 	
-//	public void changePassword(ChangePasswordActivity a, String oldPass, String newPass) {
-//		String query = "UPDATE `login` SET `password`='"+newPass+"' WHERE (`userId`='"+this.userId+"' AND `password`='"+oldPass+"');";
-//		Connection con = null;
-//        Statement st = null;
-//		System.out.println(query);
-//        try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//			System.out.println("driver loaded");
-//			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
-//			System.out.println("connection done");//connection with database established
-//			st = con.createStatement();//create statement
-//			System.out.println("statement created");
-//			int res = st.executeUpdate(query);//insert
-//			System.out.println("data inserted");
-//			if (res > 0) {
-//				JOptionPane.showMessageDialog(null,"Password Updated!");
-//			a.setVisible(false);
-//			}
-//			else {
-//				JOptionPane.showMessageDialog(null,"Password didn't match!");
-//			}
-//		}
-//        catch(Exception ex) {
-//			System.out.println("Exception : " +ex.getMessage());
-//        }
-//        finally {
-//            try {
-//                if(st!=null)
-//					st.close();
-//
-//                if(con!=null)
-//					con.close();
-//            }
-//            catch(Exception ex) {}
-//        }
-//	}
+	public void changePassword(ChangePasswordActivity a, String oldPass, String newPass) {
+		String query = "UPDATE `customer` SET `password`='"+newPass+"' WHERE (`username`='"+this.userName+"' AND `password`='"+oldPass+"');";
+		Connection con = null;
+        Statement st = null;
+		System.out.println(query);
+        try {
+			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("driver loaded");
+			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
+			System.out.println("connection done");//connection with database established
+			st = con.createStatement();//create statement
+			System.out.println("statement created");
+			int res = st.executeUpdate(query);//insert
+			System.out.println("data inserted");
+			if (res > 0) {
+				JOptionPane.showMessageDialog(null,"Password Updated!");
+			a.setVisible(false);
+			}
+			else {
+				JOptionPane.showMessageDialog(null,"Password didn't match!");
+			}
+		}
+        catch(Exception ex) {
+			System.out.println("Exception : " +ex.getMessage());
+        }
+        finally {
+            try {
+                if(st!=null)
+					st.close();
+
+                if(con!=null)
+					con.close();
+            }
+            catch(Exception ex) {}
+        }
+	}
 }

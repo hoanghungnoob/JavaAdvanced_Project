@@ -83,22 +83,19 @@ public class AdminActivity extends JFrame implements ActionListener {
 			this.setVisible(false);
 			new MyProfileActivity(this, admin).setVisible(true);
 		}
-//		else if (ae.getSource().equals(buttonLogout)) {
-//			this.setVisible(false);
-//			new LoginActivity().setVisible(true);
-//		}
-//		else if (ae.getSource().equals(buttonViewProduct)) {
-//			this.setVisible(false);
-//			new ViewProductActivity(this, employee).setVisible(true);
-//		}
-//		else if (ae.getSource().equals(buttonViewCustomer)) {
-//			this.setVisible(false);
-//			new ViewCustomerActivity(this, employee).setVisible(true);
-//		}
-//		else if (ae.getSource().equals(buttonViewEmployee)) {
-//			this.setVisible(false);
-//			new ViewEmployeeActivity(this, employee).setVisible(true);
-//		}
+		else if (ae.getSource().equals(buttonLogout)) {
+			this.setVisible(false);
+			new Login().setVisible(true);
+		}
+		else if (ae.getSource().equals(buttonViewProduct)) {
+			this.setVisible(false);
+			new ViewProductActivity(this, admin).setVisible(true);
+		}
+		else if (ae.getSource().equals(buttonViewCustomer)) {
+			this.setVisible(false);
+			new ViewCustomerActivity(this, admin).setVisible(true);
+		}
+
 		else {}
 	}
 }

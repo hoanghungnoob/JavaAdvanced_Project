@@ -15,9 +15,10 @@ public class Product {
 	private String productId;
 	private String productName;
 	private double price;
+	private double sellingprice;
 	private int quantity;
+	public static String[] columnName = {"PID", "Name","selling_price", "AvailableQuantity", "Price"};
 	public static String[] columnNames = {"PID", "Name", "Price", "AvailableQuantity"};
-	
 	public Product() {}
 	public Product(String productId) {
 		if (!productId.isEmpty())
@@ -31,6 +32,12 @@ public class Product {
 			this.productName = name;
 		else
 			throw new IllegalArgumentException("Fill in the name");
+	}
+	public double getSellingprice() {
+		return sellingprice;
+	}
+	public void setSellingprice(double sellingprice) {
+		this.sellingprice = sellingprice;
 	}
 	public void setPrice(double p) {
 		this.price = p;
@@ -52,7 +59,8 @@ public class Product {
 	}
 	
 	public void fetch() {
-		String query = "SELECT `productId`, `productName`, `price`, `quantity` FROM `product` WHERE productId='"+this.productId+"';";     
+		String query = "SELECT `product_id`, `product_name`, `cost_price`, `quantity`, `selling_price` FROM `product` WHERE product_id='"+this.productId+"';";   
+		System.out.println("ham fetch");
         Connection con = null;
         Statement st = null;
 		ResultSet rs = null;
@@ -68,9 +76,10 @@ public class Product {
 			System.out.println("results received");
 			
 			while(rs.next()) {
-				this.productName = rs.getString("productName");
-				this.price = rs.getDouble("price");
+				this.productName = rs.getString("product_name");
+				this.price = rs.getDouble("cost_price");
 				this.quantity = rs.getInt("quantity");
+				this.sellingprice = rs.getDouble("selling_price");
 			}
 		}
         catch(Exception ex) {
@@ -93,7 +102,7 @@ public class Product {
 	
 	public void sellProduct(String uid, int amount) {
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
-		String query = "INSERT INTO `purchaseInfo` (`userId`, `productId`, `amount`, `date`, `cost`) VALUES ('"+uid+"','"+this.productId+"',"+amount+", '"+date+"', "+(amount*this.price)+");";
+		String query = "INSERT INTO `purchase` (`userId`, `productId`, `amount`, `date`, `cost`) VALUES ('"+uid+"','"+this.productId+"',"+amount+", '"+date+"', "+(amount*this.price)+");";
 		Connection con = null;
         Statement st = null;
 		System.out.println(query);
@@ -125,7 +134,7 @@ public class Product {
 	}
 	
 	public void updateProduct(String name, double price, int quantity) {
-		String query = "UPDATE `product` SET `productName`='"+name+"', `price`="+price+", `quantity`="+quantity+" WHERE `productId`='"+this.productId+"';";
+		String query = "UPDATE `product` SET `product_name`='"+name+"', `selling_price`="+price+", `quantity`="+quantity+" WHERE `product_id`='"+this.productId+"';";
 		Connection con = null;
         Statement st = null;
 		System.out.println(query);
@@ -157,7 +166,7 @@ public class Product {
 	}
 	
 	public void createProduct() {
-		String query = "INSERT INTO `product` (`productName`, `price`, `quantity`) VALUES ('"+productName+"','"+price+"','"+quantity+"');";
+		String query = "INSERT INTO `product` (`product_name`, `cost_price`, `quantity`,`selling_price`) VALUES ('"+productName+"','"+price+"','"+quantity+"','"+sellingprice+"');";
 		Connection con = null;
         Statement st = null;
 		System.out.println(query);
@@ -191,9 +200,10 @@ public class Product {
 	public static DefaultTableModel searchProduct(String keyword, String byWhat) {
 		DefaultTableModel model = new DefaultTableModel();
 		model.setColumnIdentifiers(columnNames);
-		String query = "SELECT `productId`, `productName`, `price`, `quantity` FROM `product` WHERE `productId`='"+keyword+"';";
+		String query = "SELECT `product_id`, `product_name`, `cost_price`, `quantity` ,`selling_price` FROM `product` WHERE `product_id`='"+keyword+"';";
+		System.out.println("ham search");
 		if (byWhat.equals("By Name"))
-			query = "SELECT `productId`, `productName`, `price`, `quantity` FROM `product` WHERE `productName` LIKE '%"+keyword+"%';";
+			query = "SELECT `product_id`, `product_name`, `cost_price`, `quantity`, `selling_price` FROM `product` WHERE `product_name` LIKE '%"+keyword+"%';";
 		else {}
         Connection con = null;
         Statement st = null;
@@ -208,10 +218,9 @@ public class Product {
 			System.out.println("statement created");
 			rs = st.executeQuery(query);//getting result
 			System.out.println("results received");
-			
 			while(rs.next()) {
 				// ép kiểu để thêm nó vào object
-				model.addRow(new Object[]{rs.getString("productId"), rs.getString("productName"), Double.valueOf(rs.getDouble("price")), Integer.valueOf(rs.getInt("quantity"))});
+				model.addRow(new Object[]{rs.getString("product_id"), rs.getString("product_name"), Double.valueOf(rs.getDouble("selling_price")), Integer.valueOf(rs.getInt("quantity")), Double.valueOf(rs.getDouble("cost_price"))});
 			}
 		}
         catch(Exception ex) {
@@ -234,7 +243,7 @@ public class Product {
 	}
 	
 	public void deleteProduct() {
-		String query1 = "DELETE FROM `product` WHERE `productId`='"+this.productId+"';";
+		String query1 = "DELETE FROM `product` WHERE `product_id`='"+this.productId+"';";
 		Connection con = null;
         Statement st = null;
 		System.out.println(query1);

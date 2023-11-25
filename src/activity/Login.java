@@ -95,6 +95,7 @@ public class Login extends JFrame implements ActionListener {
 		}
 		else if (ae.getSource().equals(buttonLogin)) {
 			int status = User.checkStatus(usernameTF.getText(), passwordF.getText());
+			
 			if (status == 1) {
 				CustomerActivity ca = new CustomerActivity(usernameTF.getText());
 				ca.setVisible(true);
@@ -110,10 +111,6 @@ public class Login extends JFrame implements ActionListener {
 			}
 		}
 		else {}
-	}
-	public static void main(String[] args) {
-		Login la = new Login();
-		la.setVisible(true);
 	}
 
 

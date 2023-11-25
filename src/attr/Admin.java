@@ -38,7 +38,7 @@ public class Admin extends User {
 	}
 
 	public void fetch() {
-		String query = "SELECT `userName`, `customer_name`, `phone_number` FROM `customer` WHERE userName='"+this.userName+"';";     
+		String query = "SELECT `username`, `customer_name`, `phone_number` FROM `customer` WHERE userName='"+this.userName+"';";     
         Connection con = null;
         Statement st = null;
 		ResultSet rs = null;
@@ -77,7 +77,7 @@ public class Admin extends User {
 	}
 	
 	public void updateAdmin(String name, int phone) {
-		String query = "UPDATE `customer` SET `customer`='"+name+"', `phone_Number`='+84"+phone+"' WHERE `username`='"+this.userName+"';";
+		String query = "UPDATE `customer` SET `customer_name`='"+name+"', `phone_Number`='"+phone+"' WHERE `username`='"+this.userName+"' AND `status`=0;";
 		Connection con = null;
         Statement st = null;
 		System.out.println(query);
@@ -92,7 +92,7 @@ public class Admin extends User {
 			System.out.println("data inserted");
 			JOptionPane.showMessageDialog(null,"Information Updated!");
 			this.admin = name;
-			this.phoneNumber = "+84"+phone;
+			this.phoneNumber = ""+phone;
 		}
         catch(Exception ex) {
 			JOptionPane.showMessageDialog(null,"Failed to update account!");

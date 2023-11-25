@@ -111,7 +111,7 @@ public class MyProfileActivity extends JFrame implements ActionListener {
 		nameTF.setDisabledTextColor(Color.BLACK);
 		panel.add(nameTF);
 		
-		phoneTF1 = new JTextField("+880");
+		phoneTF1 = new JTextField("+84");
 		phoneTF1.setBounds(180, 240, 40, 30);
 		phoneTF1.setFont(Theme.FONT_INPUT);
 		phoneTF1.setEnabled(false);
@@ -273,46 +273,46 @@ public class MyProfileActivity extends JFrame implements ActionListener {
 			if (customer!=null)
 				addressTF.setEnabled(true);
 		}
-//		else if (ae.getSource().equals(buttonSubmit)) {
-//			
-//			if (customer!=null) {
-//				addressTF.setEnabled(false);
-//				try {
-//					customer.updateCustomer(nameTF.getText().trim(), Integer.parseInt(phoneTF2.getText()), addressTF.getText().trim());
-//					buttonEdit.setVisible(true);
-//					buttonSubmit.setVisible(false);
-//					nameTF.setEnabled(false);
-//					phoneTF2.setEnabled(false);
-//				}
-//				catch (NumberFormatException e) {
-//					JOptionPane.showMessageDialog(null,"Invalid Number!");
-//				}
-//			}
-//			else if (employee!=null) {
-//				try {
-//					employee.updateEmployee(nameTF.getText().trim(), Integer.parseInt(phoneTF2.getText()), employee.getRole(), employee.getSalary());
-//					buttonEdit.setVisible(true);
-//					buttonSubmit.setVisible(false);
-//					nameTF.setEnabled(false);
-//					phoneTF2.setEnabled(false);
-//				}
-//				catch (NumberFormatException e) {
-//					JOptionPane.showMessageDialog(null,"Invalid number!");
-//				}
-//			}
-//		}
-//		else if (ae.getSource().equals(buttonPass)) {
-//			new ChangePasswordActivity(this.usr).setVisible(true);
-//		}
-//		else if (ae.getSource().equals(buttonDelete)) {
-//			int input = JOptionPane.showConfirmDialog(null, "Sure to Delete?", "Delete "+customer.getUserId()+"?", JOptionPane.YES_NO_OPTION);
-//			if (input == 0) {
-//				customer.deleteCustomer();
-//				this.setVisible(false);
-//				new Login().setVisible(true);
-//			}
-//			else {}
-//		}
-//		else {}
+		else if (ae.getSource().equals(buttonSubmit)) {
+			
+			if (customer!=null) {
+				addressTF.setEnabled(false);
+				try {
+					customer.updateCustomer(nameTF.getText().trim(), Integer.parseInt(phoneTF2.getText()), addressTF.getText().trim());
+					buttonEdit.setVisible(true);
+					buttonSubmit.setVisible(false);
+					nameTF.setEnabled(false);
+					phoneTF2.setEnabled(false);
+				}
+				catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null,"Invalid Number!");
+				}
+			}
+			else if (admin!=null) {
+				try {
+					admin.updateAdmin(nameTF.getText().trim(), Integer.parseInt(phoneTF2.getText()));
+					buttonEdit.setVisible(true);
+					buttonSubmit.setVisible(false);
+					nameTF.setEnabled(false);
+					phoneTF2.setEnabled(false);
+				}
+				catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null,"Invalid number!");
+				}
+			}
+		}
+		else if (ae.getSource().equals(buttonPass)) {
+			new ChangePasswordActivity(this.usr).setVisible(true);
+		}
+		else if (ae.getSource().equals(buttonDelete)) {
+			int input = JOptionPane.showConfirmDialog(null, "Sure to Delete?", "Delete "+customer.getUserName()+"?", JOptionPane.YES_NO_OPTION);
+			if (input == 0) {
+				customer.deleteCustomer();
+				this.setVisible(false);
+				new Login().setVisible(true);
+			}
+			else {}
+		}
+		else {}
 	}
 }

@@ -78,26 +78,22 @@ public class CustomerActivity extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent ae) {
-//		if (ae.getSource().equals(buttonProfile)) {
-//			this.setVisible(false);
-//			new MyProfileActivity(this, customer).setVisible(true);
-//		}
-//		else if (ae.getSource().equals(buttonLogout)) {
-//			this.setVisible(false);
-//			new LoginActivity().setVisible(true);
-//		}
-//		else if (ae.getSource().equals(buttonViewProduct)) {
-//			this.setVisible(false);
-//			new ViewProductActivity(this, customer).setVisible(true);
-//		}
-//		else if (ae.getSource().equals(buttonMyProduct)) {
-//			this.setVisible(false);
-//			new MyProductActivity(this, customer).setVisible(true);
-//		}
-//		else {}
-	}
-	public static void main(String[] args) {
-		CustomerActivity n = new CustomerActivity("hung");
-		n.setVisible(true);
+		if (ae.getSource().equals(buttonProfile)) {
+			this.setVisible(false);
+			new MyProfileActivity(this, customer).setVisible(true);
+		}
+		else if (ae.getSource().equals(buttonLogout)) {
+			this.setVisible(false);
+			new Login().setVisible(true);
+		}
+		else if (ae.getSource().equals(buttonViewProduct)) {
+			this.setVisible(false);
+			new ViewProductActivity(this, customer).setVisible(true);
+		}
+		else if (ae.getSource().equals(buttonMyProduct)) {
+			this.setVisible(false);
+			new MyProductActivity(this, customer).setVisible(true);
+		}
+		else {}
 	}
 }
